@@ -9,7 +9,7 @@
 
 import { Edge } from 'edge.js'
 import camelcase from 'camelcase'
-import { join, sep, normalize } from 'path'
+import { join, sep } from 'path'
 import { fsReadAll } from '@poppinss/utils'
 
 /**

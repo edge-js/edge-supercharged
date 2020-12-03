@@ -8,7 +8,7 @@
  */
 
 import test from 'japa'
-import { join, normalize } from 'path'
+import { join } from 'path'
 import { Filesystem } from '@poppinss/dev-utils'
 import { Supercharged } from '../src/Supercharged'
 
