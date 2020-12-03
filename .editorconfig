@@ -1,5 +1,3 @@
-# http://editorconfig.org
-
 [*]
 indent_style = tab
 indent_size = 2
@@ -20,3 +18,7 @@ indent_style = tab
 
 [*.md]
 trim_trailing_whitespace = false
+
+[{fixtures,examples,newline-fixtures}/**/*]
+insert_final_newline = ignore
+indent_style = space
