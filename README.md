@@ -18,8 +18,11 @@
 ## Maintainers
 [Harminder virk](https://github.com/thetutlage)
 
-[circleci-image]: https://img.shields.io/circleci/project/github/null/null/master.svg?style=for-the-badge&logo=circleci
-[circleci-url]: https://circleci.com/gh/null/null "circleci"
+[appveyor-image]: https://img.shields.io/appveyor/ci/thetutlage/edge-supercharged/master.svg?style=for-the-badge&logo=appveyor
+[appveyor-url]: https://ci.appveyor.com/project/thetutlage/edge-supercharged "appveyor"
+
+[circleci-image]: https://img.shields.io/circleci/project/github/edge-js/edge-supercharged/master.svg?style=for-the-badge&logo=circleci
+[circleci-url]: https://circleci.com/gh/edge-js/edge-supercharged "circleci"
 
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
 [typescript-url]:  "typescript"
