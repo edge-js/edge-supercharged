@@ -7,9 +7,10 @@
  * file that was distributed with this source code.
  */
 
+import slash from 'slash'
+import { join } from 'path'
 import { Edge } from 'edge.js'
 import camelcase from 'camelcase'
-import { join, sep } from 'path'
 import { fsReadAll } from '@poppinss/utils'
 
 /**
@@ -89,9 +90,11 @@ export class Supercharged {
 		const components = fsReadAll(join(basePath, 'components'), (file) => file.endsWith('.edge'))
 
 		components.forEach((file) => {
+			file = slash(file)
+
 			const name = file
 				.replace(/\.edge$/, '') // Drop extension
-				.split(sep) // Split path
+				.split('/') // Split path
 				.map((segment) => camelcase(segment)) // Convert each segment to camelCase
 				.join('.') // Join by .
 
