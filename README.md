@@ -1,23 +1,22 @@
+<div align="center"><img src="https://res.cloudinary.com/adonis-js/image/upload/q_100/v1600679850/edge-banner_wao6ex.png" width="600px"></div>
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of contents
 
-- [edge-supercharged](#edge-supercharged)
-  - [Installation](#installation)
-  - [Usage](#usage)
+- [Edge Supercharged](#edge-supercharged)
+  - [Maintainers](#maintainers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# edge-supercharged
-> Tagline
+# Edge Supercharged
 
-[![circleci-image]][circleci-url] [![typescript-image]][typescript-url] [![npm-image]][npm-url] [![license-image]][license-url]
+> Supercharge your components and use them as edge tags
 
-A short brief
+[![appveyor-image]][appveyor-url] [![circleci-image]][circleci-url] [![npm-image]][npm-url] ![](https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript)
 
-## Installation
-
-## Usage
+## Maintainers
+[Harminder virk](https://github.com/thetutlage)
 
 [circleci-image]: https://img.shields.io/circleci/project/github/null/null/master.svg?style=for-the-badge&logo=circleci
 [circleci-url]: https://circleci.com/gh/null/null "circleci"
