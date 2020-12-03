@@ -31,6 +31,7 @@ test.group('Fixtures', () => {
 
 			const out = readFileSync(join(dirBasePath, 'index.txt'), 'utf-8')
 			const state = JSON.parse(readFileSync(join(dirBasePath, 'index.json'), 'utf-8'))
+
 			const output = edge.render('index.edge', state)
 			assert.stringEqual(output.trim(), out)
 		})

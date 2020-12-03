@@ -100,7 +100,11 @@ export class Supercharged {
 			 */
 			this.registerComponent(
 				options.prefix ? `${options.prefix}.${name}` : name,
-				normalize(`${options.diskName ? `${options.prefix}::` : ''}components/${file}`)
+
+				/**
+				 * Do not normalize the path here. Edge wants unix style paths
+				 */
+				`${options.diskName ? `${options.prefix}::` : ''}components/${file}`
 			)
 		})
 
