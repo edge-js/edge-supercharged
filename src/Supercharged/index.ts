@@ -29,7 +29,13 @@ export class Supercharged {
 	/**
 	 * Plugin fn for edge
 	 */
-	public wire = (edge: Edge) => {
+	public wire = (edge: Edge, firstRun: boolean) => {
+		/**
+		 * Reset components on each run. The "discoverComponents"
+		 * calls will collect them
+		 */
+		this.components = {}
+
 		Object.keys(edge.loader.mounted).forEach((diskName) => {
 			if (diskName === 'default') {
 				this.discoverComponents(edge.loader.mounted[diskName])
@@ -40,6 +46,14 @@ export class Supercharged {
 				})
 			}
 		})
+
+		/**
+		 * Do not re-run the following code when it is a recurring
+		 * run
+		 */
+		if (!firstRun) {
+			return
+		}
 
 		/**
 		 * Claim tags registered with supercharged
