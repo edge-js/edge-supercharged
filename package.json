@@ -80,5 +80,16 @@
     "@poppinss/utils": "^2.5.9",
     "camelcase": "^6.2.0",
     "slash": "^3.0.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edge-js/edge-supercharged.git"
+  },
+  "bugs": {
+    "url": "https://github.com/edge-js/edge-supercharged/issues"
+  },
+  "homepage": "https://github.com/edge-js/edge-supercharged#readme"
 }
