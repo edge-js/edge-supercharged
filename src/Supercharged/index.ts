@@ -10,8 +10,7 @@
 import slash from 'slash'
 import { join } from 'path'
 import { Edge } from 'edge.js'
-import camelcase from 'camelcase'
-import { fsReadAll } from '@poppinss/utils'
+import { fsReadAll, string } from '@poppinss/utils/build/helpers'
 
 /**
  * Allows registering components path with an easy to use name
@@ -58,7 +57,7 @@ export class Supercharged {
 		/**
 		 * Claim tags registered with supercharged
 		 */
-		edge.claimTag((name) => {
+		edge.compiler.claimTag((name) => {
 			if (this.components[name]) {
 				return { seekable: true, block: true }
 			}
@@ -109,7 +108,7 @@ export class Supercharged {
 			const name = file
 				.replace(/\.edge$/, '') // Drop extension
 				.split('/') // Split path
-				.map((segment) => camelcase(segment)) // Convert each segment to camelCase
+				.map((segment) => string.camelCase(segment)) // Convert each segment to camelCase
 				.join('.') // Join by .
 
 			/**
