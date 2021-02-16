@@ -13,7 +13,7 @@
 
 > Supercharge your components and use them as edge tags
 
-[![appveyor-image]][appveyor-url] [![circleci-image]][circleci-url] [![npm-image]][npm-url] ![](https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript)
+[![appveyor-image]][appveyor-url] [![circleci-image]][circleci-url] [![npm-image]][npm-url] ![](https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript) [![synk-image]][synk-url]
 
 ## Maintainers
 [Harminder virk](https://github.com/thetutlage)
@@ -32,3 +32,6 @@
 
 [license-image]: https://img.shields.io/npm/l/edge-supercharged?color=blueviolet&style=for-the-badge
 [license-url]: LICENSE.md "license"
+
+[synk-image]: https://img.shields.io/snyk/vulnerabilities/github/edge-js/edge-supercharged?label=Synk%20Vulnerabilities&style=for-the-badge
+[synk-url]: https://snyk.io/test/github/edge-js/edge-supercharged?targetFile=package.json "synk"
