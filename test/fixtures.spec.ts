@@ -18,22 +18,22 @@ import { readdirSync, readFileSync, statSync } from 'fs'
 const basePath = join(__dirname, '../fixtures')
 
 test.group('Fixtures', () => {
-	const dirs = readdirSync(basePath).filter((file) => statSync(join(basePath, file)).isDirectory())
+  const dirs = readdirSync(basePath).filter((file) => statSync(join(basePath, file)).isDirectory())
 
-	dirs.forEach((dir) => {
-		const dirBasePath = join(basePath, dir)
-		test(dir, (assert) => {
-			const edge = new Edge()
-			const supercharged = new Supercharged()
+  dirs.forEach((dir) => {
+    const dirBasePath = join(basePath, dir)
+    test(dir, (assert) => {
+      const edge = new Edge()
+      const supercharged = new Supercharged()
 
-			edge.mount(dirBasePath)
-			edge.use(supercharged.wire)
+      edge.mount(dirBasePath)
+      edge.use(supercharged.wire)
 
-			const out = readFileSync(join(dirBasePath, 'index.txt'), 'utf-8')
-			const state = JSON.parse(readFileSync(join(dirBasePath, 'index.json'), 'utf-8'))
+      const out = readFileSync(join(dirBasePath, 'index.txt'), 'utf-8')
+      const state = JSON.parse(readFileSync(join(dirBasePath, 'index.json'), 'utf-8'))
 
-			const output = edge.render('index.edge', state)
-			assert.stringEqual(output.trim(), out)
-		})
-	})
+      const output = edge.render('index.edge', state)
+      assert.stringEqual(output.trim(), out)
+    })
+  })
 })
