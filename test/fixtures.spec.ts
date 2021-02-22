@@ -33,7 +33,12 @@ test.group('Fixtures', () => {
       const state = JSON.parse(readFileSync(join(dirBasePath, 'index.json'), 'utf-8'))
 
       const output = edge.render('index.edge', state)
+      const rawOutput = edge.renderRaw(
+        readFileSync(join(dirBasePath, 'index.edge'), 'utf-8'),
+        state
+      )
       assert.stringEqual(output.trim(), out)
+      assert.stringEqual(rawOutput.trim(), out)
     })
   })
 })
