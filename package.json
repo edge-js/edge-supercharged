@@ -76,7 +76,7 @@
     "anyBranch": false
   },
   "dependencies": {
-    "@poppinss/utils": "^3.0.3",
+    "@poppinss/utils": "^3.0.4",
     "slash": "^3.0.0"
   },
   "directories": {
