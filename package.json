@@ -1,6 +1,6 @@
 {
   "name": "edge-supercharged",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Supercharged components for Edge template engine",
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
