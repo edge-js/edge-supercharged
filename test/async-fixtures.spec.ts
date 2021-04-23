@@ -15,14 +15,14 @@ import { Edge } from 'edge.js'
 import { Supercharged } from '../index'
 import { readdirSync, readFileSync, statSync } from 'fs'
 
-const basePath = join(__dirname, '../fixtures')
+const basePath = join(__dirname, '../async-fixtures')
 
-test.group('Fixtures', () => {
+test.group('Async Fixtures', () => {
   const dirs = readdirSync(basePath).filter((file) => statSync(join(basePath, file)).isDirectory())
 
   dirs.forEach((dir) => {
     const dirBasePath = join(basePath, dir)
-    test(dir, (assert) => {
+    test(dir, async (assert) => {
       const edge = new Edge()
       const supercharged = new Supercharged()
 
@@ -32,8 +32,8 @@ test.group('Fixtures', () => {
       const out = readFileSync(join(dirBasePath, 'index.txt'), 'utf-8')
       const state = JSON.parse(readFileSync(join(dirBasePath, 'index.json'), 'utf-8'))
 
-      const output = edge.renderSync('index.edge', state)
-      const rawOutput = edge.renderRawSync(
+      const output = await edge.render('index.edge', state)
+      const rawOutput = await edge.renderRaw(
         readFileSync(join(dirBasePath, 'index.edge'), 'utf-8'),
         state
       )

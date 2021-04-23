@@ -63,6 +63,12 @@ export class Supercharged {
       }
       return null
     })
+    edge.asyncCompiler.claimTag((name) => {
+      if (this.components[name]) {
+        return { seekable: true, block: true }
+      }
+      return null
+    })
 
     /**
      * Process tags
