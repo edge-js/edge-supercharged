@@ -22,7 +22,7 @@ test.group('Fixtures', () => {
 
   dirs.forEach((dir) => {
     const dirBasePath = join(basePath, dir)
-    test(dir, (assert) => {
+    test(dir, async (assert) => {
       const edge = new Edge()
       const supercharged = new Supercharged()
 
@@ -32,8 +32,8 @@ test.group('Fixtures', () => {
       const out = readFileSync(join(dirBasePath, 'index.txt'), 'utf-8')
       const state = JSON.parse(readFileSync(join(dirBasePath, 'index.json'), 'utf-8'))
 
-      const output = edge.render('index.edge', state)
-      const rawOutput = edge.renderRaw(
+      const output = await edge.render('index.edge', state)
+      const rawOutput = await edge.renderRaw(
         readFileSync(join(dirBasePath, 'index.edge'), 'utf-8'),
         state
       )
