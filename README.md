@@ -1,4 +1,4 @@
-<div align="center"><img src="https://res.cloudinary.com/adonis-js/image/upload/q_100/v1600679850/edge-banner_wao6ex.png" width="600px"></div>
+<div align="center"><img src="https://res.cloudinary.com/adonis-js/image/upload/v1620150474/edge-banner_tzmnox.jpg" width="600px"></div>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -10,13 +10,33 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Edge Supercharged
-
 > Supercharge your components and use them as edge tags
 
-[![appveyor-image]][appveyor-url] [![circleci-image]][circleci-url] [![npm-image]][npm-url] ![](https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript) [![synk-image]][synk-url]
+[![circleci-image]][circleci-url] [![appveyor-image]][appveyor-url] [![typescript-image]][typescript-url] [![npm-image]][npm-url] [![license-image]][license-url] [![synk-image]][synk-url]
 
-## Maintainers
-[Harminder virk](https://github.com/thetutlage)
+Edge supercharged enables you to use your components as edge tags. It began by scanning all the templates stored inside the `./components` directory of your view root and make them available as tags.
+
+## Usage
+Install the package from npm registry as follows
+
+```sh
+npm i edge-supercharged
+
+# yarn
+yarn add edge-supercharged
+```
+
+And use it as follows
+
+```ts
+const edge = require('edge.js').default
+const { Supercharged } = require('edge-supercharged')
+
+const supercharged = new Supercharged()
+edge.use(supercharged.wire, { recurring: process.env.NODE_ENV === 'development' })
+```
+
+During development, you must set the `recurring` option to true, so that edge reapplies the plugin on each render call. This will allow `edge-supercharged` to re-discover the components from the filesystem.
 
 [appveyor-image]: https://img.shields.io/appveyor/ci/thetutlage/edge-supercharged/master.svg?style=for-the-badge&logo=appveyor
 [appveyor-url]: https://ci.appveyor.com/project/thetutlage/edge-supercharged "appveyor"
