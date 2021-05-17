@@ -40,6 +40,28 @@ edge.use(supercharged.wire, {
 
 During development, you must set the `recurring` option to true, so that edge reapplies the plugin on each render call. This will allow `edge-supercharged` to re-discover the components from the filesystem.
 
+## Creating components
+
+The components must live inside the `./components` directory relative to the views directory and then you can reference your components as tags.
+
+Instead of using the component as follows
+
+```edge
+@component('button', { type: 'submit' })
+  <span> Submit form </span>
+@end
+```
+
+You can use it as follows:
+
+```edge
+@button({ type: 'submit' })
+  <span> Submit form </span>
+@end
+```
+
+#### [Learn more ➞](https://docs.adonisjs.com/guides/views/components#components-as-tags)
+
 [appveyor-image]: https://img.shields.io/appveyor/ci/thetutlage/edge-supercharged/master.svg?style=for-the-badge&logo=appveyor
 [appveyor-url]: https://ci.appveyor.com/project/thetutlage/edge-supercharged "appveyor"
 
