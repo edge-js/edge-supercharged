@@ -101,7 +101,7 @@ test.group('SuperCharged', (group) => {
     await fs.add('components/modal.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath, { prefix: 'hl', diskName: 'hl' })
+    charged.discoverComponents(fs.basePath, { diskName: 'hl' })
 
     assert.deepEqual(charged.components, {
       'hl.formButton': {
@@ -114,6 +114,31 @@ test.group('SuperCharged', (group) => {
         path: 'hl::components/form-input.edge',
       },
       'hl.modal': {
+        path: 'hl::components/modal.edge',
+      },
+    })
+  })
+
+  test('define custom disk name and prefix both', async (assert) => {
+    await fs.add('components/form-input.edge', '')
+    await fs.add('components/form-label.edge', '')
+    await fs.add('components/form-button.edge', '')
+    await fs.add('components/modal.edge', '')
+
+    const charged = new Supercharged()
+    charged.discoverComponents(fs.basePath, { diskName: 'hl', prefix: 'ui' })
+
+    assert.deepEqual(charged.components, {
+      'ui.formButton': {
+        path: 'hl::components/form-button.edge',
+      },
+      'ui.formLabel': {
+        path: 'hl::components/form-label.edge',
+      },
+      'ui.formInput': {
+        path: 'hl::components/form-input.edge',
+      },
+      'ui.modal': {
         path: 'hl::components/modal.edge',
       },
     })

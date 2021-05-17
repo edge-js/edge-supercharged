@@ -107,6 +107,7 @@ export class Supercharged {
     } = {}
   ): this {
     const components = fsReadAll(join(basePath, 'components'), (file) => file.endsWith('.edge'))
+    options.prefix = options.prefix ? options.prefix : options.diskName
 
     components.forEach((file) => {
       file = slash(file)
@@ -126,7 +127,7 @@ export class Supercharged {
         /**
          * Do not normalize the path here. Edge wants unix style paths
          */
-        `${options.diskName ? `${options.prefix}::` : ''}components/${file}`
+        `${options.diskName ? `${options.diskName}::` : ''}components/${file}`
       )
     })
 
