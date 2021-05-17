@@ -119,16 +119,38 @@ export class Supercharged {
         .join('.') // Join by .
 
       /**
+       * Add prefix to name when defined
+       */
+      const prefixedName = options.prefix ? `${options.prefix}.${name}` : name
+
+      /**
+       * Do not normalize the path here. Edge wants unix style paths
+       */
+      const componentPath = `${options.diskName ? `${options.diskName}::` : ''}components/${file}`
+
+      /**
        * Register the component
        */
-      this.registerComponent(
-        options.prefix ? `${options.prefix}.${name}` : name,
+      this.registerComponent(prefixedName, componentPath)
 
-        /**
-         * Do not normalize the path here. Edge wants unix style paths
-         */
-        `${options.diskName ? `${options.diskName}::` : ''}components/${file}`
-      )
+      /**
+       * Register components with `.index` with the parent name. Doing this can also
+       * run into race conditions as described below
+       *
+       * - There is a file called `components/modal.edge`
+       * - Then there is a file called `components/modal/index.edge`
+       * - The file discovered later will win over the file discovered first.
+       *
+       * So is this a bad practice?? Not really. Coz someone creating directory structure
+       * like this themselves opting into the confusion of which component they are
+       * intending to use.
+       *
+       * Infact this race condition will force them to re-think the directory structure. Something
+       * they should
+       */
+      if (name.endsWith('.index')) {
+        this.registerComponent(prefixedName.replace(/\.index$/, ''), componentPath)
+      }
     })
 
     return this

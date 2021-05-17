@@ -168,4 +168,82 @@ test.group('SuperCharged', (group) => {
       },
     })
   })
+
+  test('register nested .index files with the parent name', async (assert) => {
+    await fs.add('components/form/input.edge', '')
+    await fs.add('components/form/label.edge', '')
+    await fs.add('components/form/button.edge', '')
+    await fs.add('components/form/index.edge', '')
+
+    const charged = new Supercharged()
+    charged.discoverComponents(fs.basePath)
+
+    assert.deepEqual(charged.components, {
+      'form': {
+        path: 'components/form/index.edge',
+      },
+      'form.button': {
+        path: 'components/form/button.edge',
+      },
+      'form.index': {
+        path: 'components/form/index.edge',
+      },
+      'form.label': {
+        path: 'components/form/label.edge',
+      },
+      'form.input': {
+        path: 'components/form/input.edge',
+      },
+    })
+  })
+
+  test('register index files as index when there is no parent', async (assert) => {
+    await fs.add('components/form/input.edge', '')
+    await fs.add('components/form/label.edge', '')
+    await fs.add('components/form/button.edge', '')
+    await fs.add('components/index.edge', '')
+
+    const charged = new Supercharged()
+    charged.discoverComponents(fs.basePath)
+
+    assert.deepEqual(charged.components, {
+      'form.button': {
+        path: 'components/form/button.edge',
+      },
+      'form.label': {
+        path: 'components/form/label.edge',
+      },
+      'form.input': {
+        path: 'components/form/input.edge',
+      },
+      'index': {
+        path: 'components/index.edge',
+      },
+    })
+  })
+
+  test('register index files as index when there is no parent with a prefix', async (assert) => {
+    await fs.add('components/form/input.edge', '')
+    await fs.add('components/form/label.edge', '')
+    await fs.add('components/form/button.edge', '')
+    await fs.add('components/index.edge', '')
+
+    const charged = new Supercharged()
+    charged.discoverComponents(fs.basePath, { prefix: 'hl' })
+
+    assert.deepEqual(charged.components, {
+      'hl.form.button': {
+        path: 'components/form/button.edge',
+      },
+      'hl.form.label': {
+        path: 'components/form/label.edge',
+      },
+      'hl.form.input': {
+        path: 'components/form/input.edge',
+      },
+      'hl.index': {
+        path: 'components/index.edge',
+      },
+    })
+  })
 })
