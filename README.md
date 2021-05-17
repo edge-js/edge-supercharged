@@ -12,7 +12,7 @@
 # Edge Supercharged
 > Supercharge your components and use them as edge tags
 
-[![circleci-image]][circleci-url] [![appveyor-image]][appveyor-url] [![typescript-image]][typescript-url] [![npm-image]][npm-url] [![license-image]][license-url] [![synk-image]][synk-url]
+[![gh-workflow-image]][gh-workflow-url] [![appveyor-image]][appveyor-url] [![typescript-image]][typescript-url] [![npm-image]][npm-url] [![license-image]][license-url] [![synk-image]][synk-url]
 
 Edge supercharged enables you to use your components as edge tags. It began by scanning all the templates stored inside the `./components` directory of your view root and make them available as tags.
 
@@ -33,7 +33,9 @@ const edge = require('edge.js').default
 const { Supercharged } = require('edge-supercharged')
 
 const supercharged = new Supercharged()
-edge.use(supercharged.wire, { recurring: process.env.NODE_ENV === 'development' })
+edge.use(supercharged.wire, {
+  recurring: process.env.NODE_ENV === 'development'
+})
 ```
 
 During development, you must set the `recurring` option to true, so that edge reapplies the plugin on each render call. This will allow `edge-supercharged` to re-discover the components from the filesystem.
@@ -41,8 +43,8 @@ During development, you must set the `recurring` option to true, so that edge re
 [appveyor-image]: https://img.shields.io/appveyor/ci/thetutlage/edge-supercharged/master.svg?style=for-the-badge&logo=appveyor
 [appveyor-url]: https://ci.appveyor.com/project/thetutlage/edge-supercharged "appveyor"
 
-[circleci-image]: https://img.shields.io/circleci/project/github/edge-js/edge-supercharged/master.svg?style=for-the-badge&logo=circleci
-[circleci-url]: https://circleci.com/gh/edge-js/edge-supercharged "circleci"
+[gh-workflow-image]: https://img.shields.io/github/workflow/status/edge-js/edge-supercharged/test?style=for-the-badge
+[gh-workflow-url]: https://github.com/edge-js/edge-supercharged/actions/workflows/test.yml "Github action"
 
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
 [typescript-url]:  "typescript"
