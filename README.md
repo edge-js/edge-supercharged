@@ -12,7 +12,7 @@
 # Edge Supercharged
 > Supercharge your components and use them as edge tags
 
-[![gh-workflow-image]][gh-workflow-url] [![appveyor-image]][appveyor-url] [![typescript-image]][typescript-url] [![npm-image]][npm-url] [![license-image]][license-url] [![synk-image]][synk-url]
+[![gh-workflow-image]][gh-workflow-url] [![typescript-image]][typescript-url] [![npm-image]][npm-url] [![license-image]][license-url] [![synk-image]][synk-url]
 
 Edge supercharged enables you to use your components as edge tags. It began by scanning all the templates stored inside the `./components` directory of your view root and make them available as tags.
 
@@ -61,9 +61,6 @@ You can use it as follows:
 ```
 
 #### [Learn more ➞](https://docs.adonisjs.com/guides/views/components#components-as-tags)
-
-[appveyor-image]: https://img.shields.io/appveyor/ci/thetutlage/edge-supercharged/master.svg?style=for-the-badge&logo=appveyor
-[appveyor-url]: https://ci.appveyor.com/project/thetutlage/edge-supercharged "appveyor"
 
 [gh-workflow-image]: https://img.shields.io/github/workflow/status/edge-js/edge-supercharged/test?style=for-the-badge
 [gh-workflow-url]: https://github.com/edge-js/edge-supercharged/actions/workflows/test.yml "Github action"
