@@ -40,7 +40,7 @@
     "@types/node": "^20.4.4",
     "c8": "^8.0.0",
     "del-cli": "^5.0.0",
-    "edge.js": "^5.5.1",
+    "edge.js": "^6.0.0-0",
     "eslint": "^8.45.0",
     "github-label-sync": "^2.3.1",
     "husky": "^8.0.3",
