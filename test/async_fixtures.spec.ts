@@ -7,22 +7,23 @@
  * file that was distributed with this source code.
  */
 
-import './assert-extend'
+import './assert_extend.js'
 
-import test from 'japa'
-import { join } from 'path'
+import { test } from '@japa/runner'
+import { dirname, join } from 'node:path'
 import { Edge } from 'edge.js'
-import { Supercharged } from '../index'
-import { readdirSync, readFileSync, statSync } from 'fs'
+import { Supercharged } from '../index.js'
+import { readdirSync, readFileSync, statSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
-const basePath = join(__dirname, '../async-fixtures')
+const basePath = join(dirname(fileURLToPath(import.meta.url)), '../async_fixtures')
 
 test.group('Async Fixtures', () => {
   const dirs = readdirSync(basePath).filter((file) => statSync(join(basePath, file)).isDirectory())
 
   dirs.forEach((dir) => {
     const dirBasePath = join(basePath, dir)
-    test(dir, async (assert) => {
+    test(dir, async ({ assert }) => {
       const edge = new Edge()
       const supercharged = new Supercharged()
 

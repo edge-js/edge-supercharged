@@ -8,9 +8,10 @@
  */
 
 import slash from 'slash'
-import { join } from 'path'
+import { join } from 'node:path'
 import { Edge } from 'edge.js'
-import { fsReadAll, string } from '@poppinss/utils/build/helpers'
+import string from '@poppinss/utils/string'
+import readDir from 'fs-readdir-recursive'
 
 /**
  * Allows registering components path with an easy to use name
@@ -19,7 +20,7 @@ export class Supercharged {
   /**
    * List of registered components
    */
-  public components: {
+  components: {
     [name: string]: {
       path: string
     }
@@ -28,7 +29,7 @@ export class Supercharged {
   /**
    * Plugin fn for edge
    */
-  public wire = (edge: Edge, firstRun: boolean) => {
+  wire = (edge: Edge, firstRun: boolean) => {
     /**
      * Reset components on each run. The "discoverComponents"
      * calls will collect them
@@ -91,7 +92,7 @@ export class Supercharged {
   /**
    * Register a component
    */
-  public registerComponent(name: string, path: string): this {
+  registerComponent(name: string, path: string): this {
     this.components[name] = { path }
     return this
   }
@@ -99,14 +100,17 @@ export class Supercharged {
   /**
    * Discover components from a given directory
    */
-  public discoverComponents(
+  discoverComponents(
     basePath: string,
     options: {
       prefix?: string
       diskName?: string
     } = {}
-  ): this {
-    const components = fsReadAll(join(basePath, 'components'), (file) => file.endsWith('.edge'))
+  ) {
+    const components = readDir(join(basePath, 'components')).filter((file) =>
+      file.endsWith('.edge')
+    )
+
     options.prefix = options.prefix ? options.prefix : options.diskName
 
     components.forEach((file) => {

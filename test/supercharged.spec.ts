@@ -7,26 +7,27 @@
  * file that was distributed with this source code.
  */
 
-import test from 'japa'
-import { join } from 'path'
+import { test } from '@japa/runner'
+import { dirname, join } from 'node:path'
 import { Filesystem } from '@poppinss/dev-utils'
-import { Supercharged } from '../src/Supercharged'
+import { Supercharged } from '../src/supercharged.js'
+import { fileURLToPath } from 'node:url'
 
-const fs = new Filesystem(join(__dirname, '__app'))
+const fs = new Filesystem(join(dirname(fileURLToPath(import.meta.url)), '__app'))
 
 test.group('SuperCharged', (group) => {
-  group.afterEach(async () => {
+  group.each.teardown(async () => {
     await fs.cleanup()
   })
 
-  test('discover components from a given directory', async (assert) => {
+  test('discover components from a given directory', async ({ assert }) => {
     await fs.add('components/form/input.edge', '')
     await fs.add('components/form/label.edge', '')
     await fs.add('components/form/button.edge', '')
     await fs.add('components/modal.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath)
+    await charged.discoverComponents(fs.basePath)
 
     assert.deepEqual(charged.components, {
       'form.button': {
@@ -44,14 +45,14 @@ test.group('SuperCharged', (group) => {
     })
   })
 
-  test('convert file path to camelcase', async (assert) => {
+  test('convert file path to camelcase', async ({ assert }) => {
     await fs.add('components/form-input.edge', '')
     await fs.add('components/form-label.edge', '')
     await fs.add('components/form-button.edge', '')
     await fs.add('components/modal.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath)
+    await charged.discoverComponents(fs.basePath)
 
     assert.deepEqual(charged.components, {
       formButton: {
@@ -69,14 +70,14 @@ test.group('SuperCharged', (group) => {
     })
   })
 
-  test('define custom prefix', async (assert) => {
+  test('define custom prefix', async ({ assert }) => {
     await fs.add('components/form-input.edge', '')
     await fs.add('components/form-label.edge', '')
     await fs.add('components/form-button.edge', '')
     await fs.add('components/modal.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath, { prefix: 'hl' })
+    await charged.discoverComponents(fs.basePath, { prefix: 'hl' })
 
     assert.deepEqual(charged.components, {
       'hl.formButton': {
@@ -94,14 +95,14 @@ test.group('SuperCharged', (group) => {
     })
   })
 
-  test('define custom disk name', async (assert) => {
+  test('define custom disk name', async ({ assert }) => {
     await fs.add('components/form-input.edge', '')
     await fs.add('components/form-label.edge', '')
     await fs.add('components/form-button.edge', '')
     await fs.add('components/modal.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath, { diskName: 'hl' })
+    await charged.discoverComponents(fs.basePath, { diskName: 'hl' })
 
     assert.deepEqual(charged.components, {
       'hl.formButton': {
@@ -119,14 +120,14 @@ test.group('SuperCharged', (group) => {
     })
   })
 
-  test('define custom disk name and prefix both', async (assert) => {
+  test('define custom disk name and prefix both', async ({ assert }) => {
     await fs.add('components/form-input.edge', '')
     await fs.add('components/form-label.edge', '')
     await fs.add('components/form-button.edge', '')
     await fs.add('components/modal.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath, { diskName: 'hl', prefix: 'ui' })
+    await charged.discoverComponents(fs.basePath, { diskName: 'hl', prefix: 'ui' })
 
     assert.deepEqual(charged.components, {
       'ui.formButton': {
@@ -144,14 +145,14 @@ test.group('SuperCharged', (group) => {
     })
   })
 
-  test('handle filenames with . in them', async (assert) => {
+  test('handle filenames with . in them', async ({ assert }) => {
     await fs.add('components/form.input.edge', '')
     await fs.add('components/form.label.edge', '')
     await fs.add('components/form.button.edge', '')
     await fs.add('components/modal.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath)
+    await charged.discoverComponents(fs.basePath)
 
     assert.deepEqual(charged.components, {
       formButton: {
@@ -169,14 +170,14 @@ test.group('SuperCharged', (group) => {
     })
   })
 
-  test('register nested .index files with the parent name', async (assert) => {
+  test('register nested .index files with the parent name', async ({ assert }) => {
     await fs.add('components/form/input.edge', '')
     await fs.add('components/form/label.edge', '')
     await fs.add('components/form/button.edge', '')
     await fs.add('components/form/index.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath)
+    await charged.discoverComponents(fs.basePath)
 
     assert.deepEqual(charged.components, {
       'form': {
@@ -197,14 +198,14 @@ test.group('SuperCharged', (group) => {
     })
   })
 
-  test('register index files as index when there is no parent', async (assert) => {
+  test('register index files as index when there is no parent', async ({ assert }) => {
     await fs.add('components/form/input.edge', '')
     await fs.add('components/form/label.edge', '')
     await fs.add('components/form/button.edge', '')
     await fs.add('components/index.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath)
+    await charged.discoverComponents(fs.basePath)
 
     assert.deepEqual(charged.components, {
       'form.button': {
@@ -222,14 +223,16 @@ test.group('SuperCharged', (group) => {
     })
   })
 
-  test('register index files as index when there is no parent with a prefix', async (assert) => {
+  test('register index files as index when there is no parent with a prefix', async ({
+    assert,
+  }) => {
     await fs.add('components/form/input.edge', '')
     await fs.add('components/form/label.edge', '')
     await fs.add('components/form/button.edge', '')
     await fs.add('components/index.edge', '')
 
     const charged = new Supercharged()
-    charged.discoverComponents(fs.basePath, { prefix: 'hl' })
+    await charged.discoverComponents(fs.basePath, { prefix: 'hl' })
 
     assert.deepEqual(charged.components, {
       'hl.form.button': {

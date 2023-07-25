@@ -7,4 +7,4 @@
  * file that was distributed with this source code.
  */
 
-export { Supercharged } from './src/Supercharged'
+export { Supercharged } from './src/supercharged.js'
