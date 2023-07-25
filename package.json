@@ -1,7 +1,7 @@
 {
   "name": "edge-supercharged",
   "description": "Supercharged components for Edge template engine",
-  "version": "3.1.1",
+  "version": "4.0.0-0",
   "engines": {
     "node": ">=18.16.0"
   },
